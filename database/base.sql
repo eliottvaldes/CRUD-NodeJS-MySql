@@ -37,7 +37,7 @@ CREATE TABLE peliculasdisney (
 
 
 -- crear la tabla de Pixar
-CREATE TABLE peliculaspixar (
+CREATE TABLE peliculasdreamworks (
   id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name_movie VARCHAR(100) NOT NULL,
   main_character VARCHAR(100) NOT NULL,

@@ -3,7 +3,7 @@
 //             IMPORTANTE 
 // Primero que nada, holis uwu
 // cambiar el usuario y la contraseña de la base de datos 
-// comando para ejecutar la app es nodemon app.js
+// comando para ejecutar la app es nodemon src/app.js
 // **************************************
 // --------------------------------------
 
@@ -68,7 +68,6 @@ app.post('/addmarvel', (req, res) => {
             res.json(err);
         }
         res.redirect('/obtenerMarvel');
-
     });
 });
 
@@ -124,7 +123,6 @@ app.get('/obtenerDc', (req, res) => {
         });
     });
 });
-
 app.post('/adddc', (req, res) => {
     const data = req.body;
     con.query('INSERT INTO crudnodevlef.peliculasdc set ?', [data], (err, peliculasDC) => {
@@ -135,7 +133,6 @@ app.post('/adddc', (req, res) => {
 
     });
 });
-
 app.get('/updatedc/:id', (req, res) => {
     const { id } = req.params;
     con.query('SELECT * FROM crudnodevlef.peliculasdc WHERE id = ?', [id], (err, peliculasDC) => {
@@ -147,7 +144,6 @@ app.get('/updatedc/:id', (req, res) => {
         });
     });
 });
-
 app.post('/updatedc/:id', (req, res) => {
     const { id } = req.params;
     const newDc = req.body;
@@ -158,7 +154,6 @@ app.post('/updatedc/:id', (req, res) => {
         res.redirect('/obtenerDc');
     });
 });
-
 app.get('/deletedc/:id', (req, res) => {
     const { id } = req.params;
     con.query('DELETE FROM crudnodevlef.peliculasdc WHERE id = ?', [id], (err, peliculasDC) => {
@@ -173,7 +168,7 @@ app.get('/deletedc/:id', (req, res) => {
 //-----------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------
-//**************PELICULAS DE Disney*******************************
+//**************PELICULAS DE DISNEY*******************************
 //ruta para mostrar todos los datos
 app.get('/obtenerDisney', (req, res) => {
     con.query('SELECT * FROM crudnodevlef.peliculasdisney', (err, peliculasDisney) => {
@@ -185,7 +180,6 @@ app.get('/obtenerDisney', (req, res) => {
         });
     });
 });
-
 app.post('/adddisney', (req, res) => {
     const data = req.body;
     con.query('INSERT INTO crudnodevlef.peliculasdisney set ?', [data], (err, peliculasDisney) => {
@@ -193,10 +187,8 @@ app.post('/adddisney', (req, res) => {
             res.json(err);
         }
         res.redirect('/obtenerDisney');
-
     });
 });
-
 app.get('/updatedisney/:id', (req, res) => {
     const { id } = req.params;
     con.query('SELECT * FROM crudnodevlef.peliculasdisney WHERE id = ?', [id], (err, peliculasDisney) => {
@@ -208,18 +200,16 @@ app.get('/updatedisney/:id', (req, res) => {
         });
     });
 });
-
 app.post('/updatedisney/:id', (req, res) => {
     const { id } = req.params;
-    const newDc = req.body;
-    con.query('UPDATE crudnodevlef.peliculasdisney set ? WHERE id = ? ', [newDc, id], (err, peliculasDisney) => {
+    const newDisney = req.body;
+    con.query('UPDATE crudnodevlef.peliculasdisney set ? WHERE id = ? ', [newDisney, id], (err, peliculasDisney) => {
         if (err) {
             res.json(err);
         }
         res.redirect('/obtenerDisney');
     });
 });
-
 app.get('/deletedisney/:id', (req, res) => {
     const { id } = req.params;
     con.query('DELETE FROM crudnodevlef.peliculasdisney WHERE id = ?', [id], (err, peliculasDisney) => {
@@ -230,92 +220,66 @@ app.get('/deletedisney/:id', (req, res) => {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//**************PELICULAS DE dreamworks*******************************
+//ruta para mostrar todos los datos
+app.get('/obtenerDreamworks', (req, res) => {
+    con.query('SELECT * FROM crudnodevlef.peliculasdreamworks', (err, peliculasdreamworks) => {
+        if (err) {
+            res.json(err);
+        }
+        res.render('peliculasDreamworks', {
+            data: peliculasdreamworks
+        });
+    });
+});
+app.post('/adddreamworks', (req, res) => {
+    const data = req.body;
+    con.query('INSERT INTO crudnodevlef.peliculasdreamworks set ?', [data], (err, peliculasdreamworks) => {
+        if (err) {
+            res.json(err);
+        }
+        res.redirect('/obtenerDreamworks');
+    });
+});
+app.get('/updatedreamworks/:id', (req, res) => {
+    const { id } = req.params;
+    con.query('SELECT * FROM crudnodevlef.peliculasdreamworks WHERE id = ?', [id], (err, peliculasdreamworks) => {
+        if (err) {
+            res.json(err);
+        }
+        res.render('dreamworks_edit', {
+            data: peliculasdreamworks[0]
+        });
+    });
+});
+app.post('/updatedreamworks/:id', (req, res) => {
+    const { id } = req.params;
+    const newdreamworks = req.body;
+    con.query('UPDATE crudnodevlef.peliculasdreamworks set ? WHERE id = ? ', [newdreamworks, id], (err, peliculasdreamworks) => {
+        if (err) {
+            res.json(err);
+        }
+        res.redirect('/obtenerDreamworks');
+    });
+});
+app.get('/deletedreamworks/:id', (req, res) => {
+    const { id } = req.params;
+    con.query('DELETE FROM crudnodevlef.peliculasdreamworks WHERE id = ?', [id], (err, peliculasdreamworks) => {
+        if (err) {
+            res.json(err);
+        }
+        res.redirect('/obtenerDreamworks');
+    });
+});
+
+
+
+//******************************************************************************/
+//******************************************************************************/
+//******************************************************************************/
 
 //Iniciar la aplicación en el puerto 8090
 app.set('port', process.env.PORT || 8090);

@@ -3,7 +3,7 @@
 <!-- Objeto con los datos de la base de datos xd -->
 <div class="container">
     <div class="mt-4 mx-auto text-white">
-        <h2>PELICULAS DE DC Comics</h2>
+        <h2>PELICULAS DREAMWORKS</h2>
     </div>
     <div class="row row-cols-2 align-items-start  justify-content-between mt-4">
         <!-- divicion para mostrar todos los datos -->
@@ -14,7 +14,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Protagonista</th>
-                        <th scope="col">Villano</th>
+                        <th scope="col">Genero</th>
                         <th scope="col">Duración</th>
                         <th scope="col">Rating</th>
                         <th scope="col">Acciones</th>
@@ -29,13 +29,13 @@
                         <td><%= i+1  %></td>
                         <td><%= data[i].name_movie  %></td>
                         <td><%= data[i].main_character  %></td>
-                        <td><%= data[i].villain  %></td>
+                        <td><%= data[i].type_movie  %></td>
                         <td><%= data[i].duration  %> min</td>
                         <td><%= data[i].rating  %>/10</td>
                         <td>
-                            <a href="/updatemarvel/<%= data[i].id %>" class="btn btn-primary"><i
+                            <a href="/updatedreamworks/<%= data[i].id %>" class="btn btn-primary"><i
                                     class="fas fa-edit"></i></a>
-                            <a href="/deletemarvel/<%= data[i].id %>" class="btn btn-danger "><i
+                            <a href="/deletedreamworks/<%= data[i].id %>" class="btn btn-danger "><i
                                     class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
@@ -52,7 +52,7 @@
         <div class="col-md-4">
             <div class="card shadow p-3 mb-5 bg-white rounded">
                 <div class="card-body">
-                    <form action="/addmarvel" method="POST" class="was-validated">
+                    <form action="/adddreamworks" method="POST" class="was-validated">
                         <h4 class="card-title text-center">Agregar Pelicula</h4>
                         <div class="form-group mt-4">
                             <input type="text" name="name_movie" value="" placeholder="Nombre de la Pelicula"
@@ -63,8 +63,8 @@
                                 id="protagonista" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="villain" value="" placeholder="Villano" class="form-control"
-                                id="villano" required>
+                            <input type="text" name="type_movie" value="" placeholder="Genero   ejm: Comedia" class="form-control"
+                                id="type_movie" required>
                         </div>
 
                         <div class="form-row">
@@ -92,7 +92,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-dark mt-4">
-                            Guardar Pelicula de Marvel!
+                            Guardar Pelicula de DreamWorks!
                         </button>
                     </form>
                 </div>

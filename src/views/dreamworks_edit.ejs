@@ -11,7 +11,7 @@
             
             <div class="card shadow p-3 mb-5 bg-white rounded">
                 <div class="card-body">
-                    <form action="/updatemarvel/<%= data.id%>" method="POST" class="was-validated">
+                    <form action="/updatedreamworks/<%= data.id%>" method="POST" class="was-validated">
                         <h4 class="card-title text-center">EDITAR PELICULA "<%= data.name_movie %>"</h4>
                         <div class="form-group mt-4">
                             <label for="disabledTextInput">NOMBRE DE LA PELICULA</label>
@@ -24,8 +24,8 @@
                                 class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="disabledTextInput">VILLANO</label>
-                            <input type="text" name="villain" value="<%= data.villain %>"  class="form-control"
+                            <label for="disabledTextInput">TIPO</label>
+                            <input type="text" name="type_movie" value="<%= data.type_movie %>"  class="form-control"
                                 required>
                         </div> 
                         
