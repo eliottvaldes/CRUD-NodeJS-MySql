@@ -1,0 +1,104 @@
+<!-- Incluimos esto para evitar repetir codigo uwu  -->
+<%- include('partials/_header'); -%>
+<!-- Objeto con los datos de la base de datos xd -->
+<div class="container">
+    <div class="mt-4 mx-auto text-white">
+        <h2>PELICULAS DE DC Comics</h2>
+    </div>
+    <div class="row row-cols-2 align-items-start  justify-content-between mt-4">
+        <!-- divicion para mostrar todos los datos -->
+        <div class="col-md-8">
+            <table class="table table-bordered table-hover bg-white shadow p-3 mb-5 bg-white rounded">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Protagonista</th>
+                        <th scope="col">Villano</th>
+                        <th scope="col">Duración</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <!-- Secciones de ejs para mostrar datos -->
+                    <% if(data) { %>
+
+                    <% for(i=0;i<data.length;i++){ %>
+                    <tr>
+                        <td><%= i+1  %></td>
+                        <td><%= data[i].name_movie  %></td>
+                        <td><%= data[i].main_character  %></td>
+                        <td><%= data[i].villain  %></td>
+                        <td><%= data[i].duration  %> min</td>
+                        <td><%= data[i].rating  %>/10</td>
+                        <td>
+                            <a href="/updatemarvel/<%= data[i].id %>" class="btn btn-primary"><i
+                                    class="fas fa-edit"></i></a>
+                            <a href="/deletemarvel/<%= data[i].id %>" class="btn btn-danger "><i
+                                    class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <!-- fin del for -->
+                    <% } %>
+                    <!-- fin del IF -->
+                    <%  } %>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <form action="/addmarvel" method="POST" class="was-validated">
+                        <h4 class="card-title text-center">Agregar Pelicula</h4>
+                        <div class="form-group mt-4">
+                            <input type="text" name="name_movie" value="" placeholder="Nombre de la Pelicula"
+                                id="nombre" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="main_character" value="" placeholder="Personaje Principal"
+                                id="protagonista" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="villain" value="" placeholder="Villano" class="form-control"
+                                id="villano" required>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="col">
+                                <label for="disabledTextInput">Duración (min)</label>
+                                <input type="number" class="form-control" value="60" name="duration" min="60" max="240"
+                                    id="minutos" required>
+                            </div>
+                            <div class="form-col">
+                                <label class="my-1 mr-2" for="Rating">Rating</label>
+                                <select class="custom-select mr-sm-2" id="Rating" name="rating" required>
+                                    <option>10</option>
+                                    <option>9</option>
+                                    <option>8</option>
+                                    <option>7</option>
+                                    <option>6</option>
+                                    <option>5</option>
+                                    <option>4</option>
+                                    <option>3</option>
+                                    <option>2</option>
+                                    <option>1</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark mt-4">
+                            Guardar Pelicula de Marvel!
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/_footer'); -%>

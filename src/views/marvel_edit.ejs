@@ -1,0 +1,68 @@
+<!-- Incluimos esto para evitar repetir codigo uwu  -->
+<%- include('partials/_header'); -%>
+
+<div class="container">
+    <div class="row row-cols-2 align-items-start  justify-content-between mt-5">
+        <div class="col-md-5">
+            <img src="https://wannathis.one/static/img_main/pose_m34-p-1600.png" height="550px" alt="mono kawai">
+        </div>
+
+        <div class="col-md-6">
+            
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <form action="/updatemarvel/<%= data.id%>" method="POST" class="was-validated">
+                        <h4 class="card-title text-center">EDITAR PELICULA "<%= data.name_movie %>"</h4>
+                        <div class="form-group mt-4">
+                            <label for="disabledTextInput">NOMBRE DE LA PELICULA</label>
+                            <input type="text" name="name_movie" value="<%= data.name_movie %>"
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="disabledTextInput">PROTAGONISTA</label>
+                            <input type="text" name="main_character" value="<%= data.main_character %>" 
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="disabledTextInput">VILLANO</label>
+                            <input type="text" name="villain" value="<%= data.villain %>"  class="form-control"
+                                required>
+                        </div> 
+                        
+                        <div class="form-row">  
+
+                            <div class="col">
+                                <label for="disabledTextInput">DURACIÓN (min)</label>
+                                <input type="number" class="form-control" name="duration" value="<%= data.duration %>" min="60" max="240" required>
+                            </div>                            
+                            <div class="col">
+                                <label class="" for="Rating">RATING</label>
+                                <select class="custom-select mr-sm-2" id="Rating" name="rating" required>
+                                    <option><%= data.rating %></option>
+                                    <option >10</option>
+                                    <option >9</option>
+                                    <option >8</option>
+                                    <option >7</option>
+                                    <option >6</option>
+                                    <option >5</option>
+                                    <option >4</option>
+                                    <option >3</option>
+                                    <option >2</option>
+                                    <option >1</option>
+                                </select>
+                            </div>
+                        </div>
+                                                
+                        <button type="submit" class="btn btn-dark mt-4">
+                            Guardar Cambios
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<%- include('partials/_footer'); -%>
