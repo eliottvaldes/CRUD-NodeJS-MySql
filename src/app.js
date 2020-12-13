@@ -276,6 +276,45 @@ app.get('/deletedreamworks/:id', (req, res) => {
 });
 
 
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//**************MENSAJE CIFRADO*******************************
+//ruta para mostrar todos los datos
+app.get('/obtenerSecreto', (req, res) => {
+    con.query('SELECT name_user, msg, pass FROM crudnodevlef.secretmsg', (err, secret) => {
+        if (err) {
+            res.json(err);
+        }
+        res.render('mensajeSecreto', {
+            data: secret
+        });
+    });
+});
+app.post('/addmsg', (req, res) => {
+    const data = req.body;    
+    let name_user = data.name;
+    let msg = data.msg;
+    let pass = data.password2;
+    console.log("Pass1: " + data.password1 + "\nPass2: " + data.password2);
+
+    if(data.password1.length==8 || data.password1.length==16){
+        if(data.password1 != data.password2){
+            res.redirect('/obtenerSecreto');
+        }else{
+            con.query('INSERT INTO crudnodevlef.secretmsg values ("'+name_user+'", AES_ENCRYPT("'+msg+'","'+pass+'"),"'+pass+'")', (err, secret) => {
+                if (err) {
+                    res.json(err);
+                }
+                res.redirect('/obtenerSecreto');
+            });    
+        }
+    }else{
+        res.redirect('/obtenerSecreto');
+    }
+    
+});
+
 
 
 //--------------------------------------
@@ -346,6 +385,35 @@ app.get('/obtenerProtagonista', (req, res) => {
     });
 });
 
+
+
+//dirigir al formulario para poder hacer la consulta
+app.get('/dataCifrado',(req, res)=>{
+    res.render('c6');
+});
+// descifrar mensaje
+app.post('/obtenerCifrado', (req, res) => {
+    const data = req.body;    
+    let name_user = data.name;
+    let msg = data.msg;
+    let pass = data.password2;
+    console.log("Pass1: " + data.password1 + "\nPass2: " + data.password2);
+
+    if(data.password1 != data.password2){
+        res.render('c6');
+    }else{                    
+        con.query('SELECT name_user, AES_DECRYPT(msg,"'+pass+'") AS msg, pass FROM crudnodevlef.secretmsg WHERE name_user= "'+name_user+'" AND pass = "'+pass+'"  ',
+        (err, descifrado) => {
+            if (err) {
+                res.json(err);
+            }
+            res.render('c6_2', {
+                data: descifrado
+            });
+        });
+    }
+    
+});
 
 
 

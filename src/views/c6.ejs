@@ -1,4 +1,83 @@
-<%- include('partials/_header_consultas'); -%>
+<%- include('partials/_header_msg'); -%>
+    <div class="container align-middle">
+        <div class="col-md-6">
+            <div class="mt-4 mx-auto text-white">
+                <h2>Consulta tu mensaje descifrado</h2>
+            </div>
+            <div class="row align-items-start mt-4">
+                <div class="col">
+                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                        <div class="card-body">
+                            <form action="/obtenerCifrado" method="POST" class="was-validated">
+                                <h4 class="card-title text-center">Consultar Mensaje</h4>
+                                <div class="form-group mt-4">
+                                    <input type="text" name="name" value="" placeholder="Ingresa tu nombre" id="nombre"
+                                        class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password1" value="" placeholder="Contraseña"
+                                        class="form-control" minlength="16" maxlength="16" onkeyup="valp1();" id="pass1"
+                                        required>
+                                </div>
+                                <span id="vp1"></span>
 
+                                <div class="form-group">
+                                    <input type="password" name="password2" value=""
+                                        placeholder="Confirmación de Contraseña" class="form-control" minlength="16"
+                                        maxlength="16" onkeyup="valp2();" id="pass2" required>
+                                </div>
+                                <span id="vp2"></span>
 
-<%- include('partials/_footer_consultas'); -%>
+                                <button type="submit" class="btn btn-dark mt-4">
+                                    Buscar y descifrar mensaje <i class="fas fa-shield-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function valp1() {
+            var vcla1 = document.getElementById("pass1").value;
+            var disval = document.getElementById('vp1');
+            var count8 = 8 - vcla1.length;
+            var count16 = 16 - vcla1.length;
+            if (vcla1.length == 8 || vcla1.length == 16) {
+                disval.innerHTML = `<p><h6 class="text-success"> Contraseña Válida </h6></p>`;
+            } else {
+                if (vcla1.length < 8) {
+                    disval.innerHTML = `<p><h6 class="text-warning">Contraseña Inválida te faltan ` + count8 + ` digitos para una clave de 8 caracteres</h6> </p>`;
+                } else
+                    if (vcla1.length > 8 && vcla1.length < 16) {
+                        disval.innerHTML = `<p><h6 class="text-warning">Contraseña Inválida te faltan ` + count16 + ` digitos para una clave de 16 caracteres</h6> </p>`;
+                    }
+            }
+        }
+
+        function valp2() {
+            var vcla1 = document.getElementById("pass1").value;
+            var vcla2 = document.getElementById("pass2").value;
+            var disval = document.getElementById('vp2');
+            if (vcla2 == vcla1) {
+                disval.innerHTML = `<p><h6 class="text-success">Las contraseñas coinciden</h6></p>`;
+            } else {
+                disval.innerHTML = `<p><h6 class="text-warning">Las contraseñas NO coinciden</h6></p>`;
+            }
+        }
+
+        function info() {
+            Swal.fire(
+                '¡Importante!',
+                'Recuerda ingresar el Nombre y Contraseña que ingresaste al crear tu mensaje, en caso de que no sean correctos no se mostrarán los mensajes',
+                'info'
+            )
+        }
+
+        window.onload(info());
+
+    </script>
+
+<%- include('partials/_footer'); -%>

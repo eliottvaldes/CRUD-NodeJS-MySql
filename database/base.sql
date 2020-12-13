@@ -46,6 +46,13 @@ CREATE TABLE peliculasdreamworks (
   rating INT(11)
 );
 
+
+CREATE TABLE secretmsg (  
+  name_user VARCHAR(20) NOT NULL,
+  msg BLOB NOT NULL,
+  pass VARCHAR(17) NOT NULL
+);
+
 -- ver todas las tablas uwu
 show tables;
 
