@@ -1,0 +1,45 @@
+<%- include('partials/_header_consultas'); -%>
+<div class="mt-4 mx-auto text-white">
+    <h2>Consulta por Duración (DESC)</h2>
+</div>
+<div class="row align-items-start mt-4">
+    <div class="col">
+        <table class="table table-bordered table-hover bg-white shadow p-3 mb-5 bg-white rounded">
+            <thead class="thead-dark">
+                <tr >
+                    <th scope="col">#</th>
+                    <th scope="col">Duración</th>
+                    <th scope="col">Película</th>                    
+                    <th scope="col">Franquicia</th>                        
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Secciones de ejs para mostrar datos -->
+                <% if(data) { %>
+
+                <% for(i=0;i<data.length;i++){ %>
+                <tr>
+                    <td><%= i+1  %></td>                    
+                    <td class="text-success"><%= data[i].duration %> minutos</td> 
+                    <td><%= data[i].name_movie %></td>                                                               
+                    <td><%= data[i].Franquicia  %></td>
+                </tr>
+                <!-- fin del for -->
+                <% } %>
+                <!-- fin del IF -->
+                <%  } %>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="mt-3">
+    <button class="btn btn-light float-right">
+        <a href="/" class="text-primary">
+            Regresar a página inicial <i class="fas fa-home"></i>
+        </a>
+    </button>
+</div>
+
+<%- include('partials/_footer_consultas'); -%>

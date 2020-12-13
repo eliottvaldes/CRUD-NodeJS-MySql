@@ -277,8 +277,78 @@ app.get('/deletedreamworks/:id', (req, res) => {
 
 
 
-//******************************************************************************/
-//******************************************************************************/
+
+//--------------------------------------
+// CONSULTAS
+//Consutlar todas
+app.get('/obtenerTodas', (req, res) => {
+    con.query('SELECT "Marvel" as Franquicia, name_movie, main_character, duration, rating FROM peliculasmarvel UNION SELECT "DC Comics", name_movie, main_character, duration, rating FROM peliculasdc UNION SELECT "Disney", name_movie, main_character, duration, rating FROM peliculasdisney UNION SELECT "DreamWorks", name_movie, main_character, duration, rating FROM peliculasdreamworks ORDER BY Franquicia ASC',
+    (err, all) => {
+        if (err) {
+            res.json(err);
+        }
+        res.render('c1', {
+            data: all
+        });
+    });
+});
+
+//por rating
+app.get('/obtenerRating', (req, res) => {
+    con.query('SELECT "Marvel" as Franquicia, name_movie, rating FROM peliculasmarvel UNION SELECT "DC Comics", name_movie, rating FROM peliculasdc UNION SELECT "Disney", name_movie, rating FROM peliculasdisney UNION SELECT "DreamWorks", name_movie, rating FROM peliculasdreamworks ORDER BY rating DESC',
+    (err, all) => {
+        if (err) {
+            res.json(err);
+        }
+        res.render('c2', {
+            data: all
+        });
+    });
+});
+
+
+// por duración
+app.get('/obtenerDuracion', (req, res) => {
+    con.query('SELECT "Marvel" as Franquicia, name_movie, duration FROM peliculasmarvel UNION SELECT "DC Comics", name_movie, duration FROM peliculasdc UNION SELECT "Disney", name_movie, duration FROM peliculasdisney UNION SELECT "DreamWorks", name_movie, duration FROM peliculasdreamworks ORDER BY duration DESC',
+    (err, all) => {
+        if (err) {
+            res.json(err);
+        }
+        res.render('c3', {
+            data: all
+        });
+    });
+});
+
+//por nombre
+app.get('/obtenerNombre', (req, res) => {
+    con.query('SELECT "Marvel" as Franquicia, name_movie FROM peliculasmarvel UNION SELECT "DC Comics", name_movie FROM peliculasdc UNION SELECT "Disney", name_movie FROM peliculasdisney UNION SELECT "DreamWorks", name_movie FROM peliculasdreamworks ORDER BY name_movie ASC',
+    (err, all) => {
+        if (err) {
+            res.json(err);
+        }
+        res.render('c4', {
+            data: all
+        });
+    });
+});
+
+//por pritagonista
+app.get('/obtenerProtagonista', (req, res) => {
+    con.query('SELECT name_movie, main_character FROM peliculasmarvel UNION SELECT  name_movie, main_character FROM peliculasdc UNION SELECT  name_movie, main_character FROM peliculasdisney UNION SELECT  name_movie, main_character FROM peliculasdreamworks ORDER BY main_character ASC',
+    (err, all) => {
+        if (err) {
+            res.json(err);
+        }
+        res.render('c5', {
+            data: all
+        });
+    });
+});
+
+
+
+
 //******************************************************************************/
 
 //Iniciar la aplicación en el puerto 8090

@@ -27,14 +27,14 @@
         <a href="/" class="navbar-brand">
             <div class="ml-3 animate__animated animate__backInLeft animate__delay-1s ">
                 <h2 class="animate__animated animate__rubberBand animate__delay-3s animate__repeat-2"><i
-                        class="fas fa-film"></i> CRUD DE PELICULAS <i class="fas fa-film"></i></h2>
+                        class="fas fa-film"></i> CRUD DE PELÍCULAS <i class="fas fa-film"></i></h2>
             </div>
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link mr-5" href="/">
-                        <h4>Inicio <i class="fas fa-home"></i></h4><span class="sr-only">(current)</span>
+                        <h4>Valdes Luis Eliot Fabian <i class="fas fa-user"></i></h4><span class="sr-only">(current)</span>
                     </a>
                 </li>
             </ul>
@@ -43,7 +43,7 @@
     
 
     <div class="container animate__animated animate__zoomInUp">
-        <div class="row row-cols-2 mt-5">
+        <div class="row row-cols-2 mt-4">
             <div class="col-md-2">
                 <img src="https://wannathis.one/static/img_main/pose_m31-p-1600.png" height="570px" alt="chico saltandouwu">
             </div>
@@ -61,6 +61,7 @@
                                 <a href="/obtenerDc" class="list-group-item list-group-item-action">Películas de DC</a>
                                 <a href="/obtenerDisney" class="list-group-item list-group-item-action">Películas de Disney</a>
                                 <a href="/obtenerDreamworks" class="list-group-item list-group-item-action">Películas de DreamWorks</a>
+                                <a href="/obtenerSecreto" class="list-group-item list-group-item-action">Creación de Mensaje Secreto</a>
                             </div>
                         </div>
                     </div>
@@ -70,9 +71,19 @@
                         <div class="card-body">
                             <h4 class="card-title text-center">Consultas</h4>
                             <div class="list-group">
-                                <a href="/obtenerDuracion" class="list-group-item list-group-item-action">Por duración</a>
-                                <a href="#" class="list-group-item list-group-item-action">Por Rating</a>
-                                <a href="#" class="list-group-item list-group-item-action">Cantidad total de películas</a>                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="/obtenerTodas" class="list-group-item list-group-item-action">Todas las peliculas</a>
+                                        <a href="/obtenerRating" class="list-group-item list-group-item-action">Por Rating</a>
+                                        <a href="/obtenerDuracion" class="list-group-item list-group-item-action">Por Duración</a>    
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="/obtenerNombre" class="list-group-item list-group-item-action">Por Nombre</a>
+                                        <a href="/obtenerProtagonista" class="list-group-item list-group-item-action">Por Protagonista</a>
+                                        <a href="/obtenerCifrado" class="list-group-item list-group-item-action">Mensajes Descifrados</a>                                        
+                                    </div>                                
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
