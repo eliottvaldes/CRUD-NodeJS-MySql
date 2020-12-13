@@ -1,9 +1,12 @@
+
 // --------------------------------------
 // **************************************
 //             IMPORTANTE 
 // Primero que nada, holis uwu
-// cambiar el usuario y la contraseña de la base de datos 
-// comando para ejecutar la app es nodemon src/app.js
+// dentro de la carpeta 'database' se encuentra el archivo .sql para importar la base de datos
+// se debe cambiar el usuario y la contraseña de la base de datos 
+// POR ULTIMO UwU
+// el comando para ejecutar la app es nodemon src/app.js
 // **************************************
 // --------------------------------------
 
@@ -316,8 +319,7 @@ app.post('/addmsg', (req, res) => {
 });
 
 
-
-//--------------------------------------
+//-------------------------------------------------------------------------------------------------------
 // CONSULTAS
 //Consutlar todas
 app.get('/obtenerTodas', (req, res) => {
@@ -344,7 +346,6 @@ app.get('/obtenerRating', (req, res) => {
         });
     });
 });
-
 
 // por duración
 app.get('/obtenerDuracion', (req, res) => {
@@ -385,8 +386,6 @@ app.get('/obtenerProtagonista', (req, res) => {
     });
 });
 
-
-
 //dirigir al formulario para poder hacer la consulta
 app.get('/dataCifrado',(req, res)=>{
     res.render('c6');
@@ -416,7 +415,8 @@ app.post('/obtenerCifrado', (req, res) => {
 });
 
 
-
+//******************************************************************************/
+//******************************************************************************/
 //******************************************************************************/
 
 //Iniciar la aplicación en el puerto 8090
